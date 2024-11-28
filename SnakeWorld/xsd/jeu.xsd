@@ -18,6 +18,14 @@
 	</complexType>
 	
 	<complexType name="Snake">
-		<
+		
+	</complexType>
+	
+	
+	<complexType name="Joueurs">
+		<sequence>
+			<element name="joueur" type="Joueur" maxOccurs="unbounded"/> 
+		</sequence>
+
 	</complexType>
 </schema>
