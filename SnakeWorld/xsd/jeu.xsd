@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<schema version="1.0"
+		xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:jeu="http://www.univ-grenoble-alpes.fr/l3miage/jeu"
+		targetNamespace="http://www.univ-grenoble-alpes.fr/l3miage/jeu"
+		elementFormDefault="qualified"
+>
+	<element name="jeu" type="jeu:Jeu"/>
+	
+	<complexType name="Jeu">
+		
+	</complexType>
+</schema>
