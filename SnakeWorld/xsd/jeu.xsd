@@ -9,6 +9,11 @@
 	<element name="jeu" type="jeu:Jeu"/>
 	
 	<complexType name="Jeu">
-		
+		<sequence>
+			<element name="snake" type="jeu:Snake"/>
+			<element name="joueur" type="jeu:Joueur"/>
+			<element name="cadre" type="jeu:Cadre"/>
+			<element name="aliment" type="jeu:Aliment"/>
+		</sequence>
 	</complexType>
 </schema>
