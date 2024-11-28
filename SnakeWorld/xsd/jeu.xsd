@@ -16,4 +16,8 @@
 			<element name="aliment" type="jeu:Aliment"/>
 		</sequence>
 	</complexType>
+	
+	<complexType name="Snake">
+		<
+	</complexType>
 </schema>
