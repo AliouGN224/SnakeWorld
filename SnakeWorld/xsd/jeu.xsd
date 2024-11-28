@@ -16,4 +16,10 @@
 			<element name="aliment" type="jeu:Aliment"/>
 		</sequence>
 	</complexType>
+	
+	<complexType name="Joueurs">
+		<sequence>
+			<element name="joueur" type="Joueur" maxOccurs="unbounded"/> 
+		</sequence>
+	</complexType>
 </schema>
