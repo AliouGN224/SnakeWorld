@@ -40,7 +40,7 @@
 	</complexType>
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Direction (Où le serpent fait face)  +++++++++++++++++++++++++++++++ -->
-	<simpleType name="">
+	<simpleType name="Direction">
 		<restriction base="string">
 			<enumeration value="Est"/>
 			<enumeration value="Ouest"/>
