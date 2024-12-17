@@ -17,6 +17,7 @@ namespace SerpentJeu
         private bool _jeuTermine;
         private float _tempsDepuisDernierMouvement;
         private float _delaiMouvement;
+        private static int _tailleCelluleGril = 20;
 
         public JeuPrincipal()
         {
@@ -28,17 +29,17 @@ namespace SerpentJeu
         protected override void Initialize()
         {
             // Initialisation des dimensions de la grille
-            int tailleCelluleGril = 20; // Taille d'une cellule (en pixels)
-            int largeGril = GraphicsDevice.Viewport.Width / tailleCelluleGril; // Largeur de la grille
-            int HautGrill = GraphicsDevice.Viewport.Height / tailleCelluleGril; // Hauteur de la grill
+             // Taille d'une cellule (en pixels)
+            int largeGril = GraphicsDevice.Viewport.Width / _tailleCelluleGril; // Largeur de la grille
+            int HautGrill = GraphicsDevice.Viewport.Height / _tailleCelluleGril; // Hauteur de la grill
             
 
-            _serpent = new Serpent(tailleCelluleGril);
-            _nourriture = new Nourriture(tailleCelluleGril);
+            _serpent = new Serpent(_tailleCelluleGril);
+            _nourriture = new Nourriture(_tailleCelluleGril);
             _nourriture.GenererPositionAleatoire(largeGril, HautGrill); 
             _score = 0;
             _jeuTermine = false;
-            _tempsDepuisDernierMouvement = 0f;
+            _tempsDepuisDernierMouvement = 1f;
             _delaiMouvement = 0.2f; // Délai entre les mouvements du serpent
 
             base.Initialize();
@@ -77,7 +78,7 @@ namespace SerpentJeu
                 _serpent.MettreAJour();
 
                 if (_serpent.DetecterCollision() || 
-                    _serpent.HorsLimites(GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20))
+                    _serpent.HorsLimites(GraphicsDevice.Viewport.Width / _tailleCelluleGril, GraphicsDevice.Viewport.Height / _tailleCelluleGril))
                 {
                     _jeuTermine = true;
                     //SauvegarderEtatJeu();
@@ -86,7 +87,7 @@ namespace SerpentJeu
                 if (Vector2.Distance(_serpent.PositionTete, _nourriture.RecupererPosition()) < 1)
                 {
                     _serpent.Agrandir();
-                    _nourriture.GenererPositionAleatoire(GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
+                    _nourriture.GenererPositionAleatoire(GraphicsDevice.Viewport.Width / _tailleCelluleGril, GraphicsDevice.Viewport.Height / _tailleCelluleGril);
                     _score += 10;
                 }
             }
@@ -125,6 +126,7 @@ namespace SerpentJeu
                 Score = _score,
                 Statut = _jeuTermine ? "Terminé" : "En cours",
                 Horodatage = DateTime.Now
+                
             };
 
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(EtatJeu));

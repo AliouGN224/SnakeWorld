@@ -24,7 +24,7 @@ namespace SerpentJeu
         {
             _texture = new Texture2D(appareilGraphique, _tailleCellule, _tailleCellule);
             Color[] couleur = new Color[_tailleCellule * _tailleCellule];
-            for (int i = 0; i < couleur.Length; i++) couleur[i] = Color.Green;
+            for (int i = 0; i < couleur.Length; i++) couleur[i] = Color.Yellow;
             _texture.SetData(couleur);
         }
 
