@@ -7,26 +7,56 @@
 		elementFormDefault="qualified"
 >
 	<element name="jeu" type="jeu:Jeu"/>
+	<element name="joueurs" type="jeu:Joueurs"/>
 	
 	<complexType name="Jeu">
 		<sequence>
 			<element name="snake" type="jeu:Snake"/>
 			<element name="joueur" type="jeu:Joueur"/>
 			<element name="cadre" type="jeu:Cadre"/>
-			<element name="aliment" type="jeu:Aliment"/>
+			<element name="aliment" type="jeu:Nouriture"/>
 		</sequence>
 	</complexType>
+	
+<!-- Aliment  du serpent ************************ -->
+	
+	<complexType name="Nouriture">
+		<sequence>
+			<element name="type" type="jeu:Type"/>
+			<element name="position" type="jeu:Vecteur2D"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Type">
+		<restriction base="string">
+			<enumeration value="Lapin"/>
+			<enumeration value="Pomme"/>
+		</restriction>
+	</simpleType>
+	<complexType name="Vecteur2D">
+		<sequence>
+			<element name="x" type="string"/>
+			<element name="y" type="string"/>
+		</sequence>
+	</complexType>
+<<<<<<< HEAD
 
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Joueurs  +++++++++++++++++++++++++++++++ -->
 
+=======
+
+	<!-- +++++++++++++++++++++++++++++++ TYPE Joueurs  +++++++++++++++++++++++++++++++ -->
+>>>>>>> 03595a98ee8d667994da9998f16c26bd7c820bf5
 	
 	<complexType name="Snake">
 		
 	</complexType>
 	
+<<<<<<< HEAD
 	
 
+=======
+>>>>>>> 03595a98ee8d667994da9998f16c26bd7c820bf5
 	<complexType name="Joueurs">
 		<sequence>
 			<element name="joueur" type="jeu:Joueur" maxOccurs="unbounded"/> 
