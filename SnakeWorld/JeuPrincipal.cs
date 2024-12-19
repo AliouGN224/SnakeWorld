@@ -163,6 +163,7 @@ public class JeuPrincipal : Game
     private GraphicsDeviceManager _gestionGraphique;
    
     private SpriteBatch _crayon;
+    private string _cheminXml = "xml/joueurs.xml";
 
     // État du jeu
     private bool _jeuEnCours = false; // Indique si le joueur est en train de jouer
@@ -180,9 +181,11 @@ public class JeuPrincipal : Game
 
     // Police pour affichage de texte
     private SpriteFont _police;
-
+    private SerialisableJoueurs _joueurs=new SerialisableJoueurs();
+    //_joueurs = new SerialisableJoueurs();
     public JeuPrincipal()
     {
+        //_joueurs = new SerialisableJoueurs();
         _gestionGraphique = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
@@ -203,6 +206,8 @@ public class JeuPrincipal : Game
         _jeuTermine = false;
         _tempsDepuisDernierMouvement = 0f;
         _delaiMouvement = 0.2f; // Délai entre les mouvements du serpent
+        _joueurs.DeserialiserJoueurs(_cheminXml); // Charger les données existantes
+
 
         base.Initialize();
     }
@@ -225,6 +230,31 @@ public class JeuPrincipal : Game
         _serpent.ChargerContenu(GraphicsDevice);
         _nourriture.ChargerContenu(GraphicsDevice);
     }
+    
+    private void MettreAJourMeilleurScore()
+    {
+        // Charger les données des joueurs depuis le fichier XML
+        _joueurs.DeserialiserJoueurs(_cheminXml);
+
+        // Trouver le joueur correspondant à l'utilisateur connecté
+        foreach (var joueur in _joueurs.Joueurs)
+        {
+            if (joueur.Login == _ecranConnexion.getLogin() && joueur.MotDePasse == _ecranConnexion.getMotDePasse())
+            {
+                // Mettre à jour le meilleur score si le score actuel est supérieur
+                if (_score > joueur.MeilleurScore)
+                {
+                    joueur.MeilleurScore = _score;
+                    Console.WriteLine($"Nouveau meilleur score pour {joueur.Login} : {_score}");
+                }
+                break;
+            }
+        }
+
+        // Sérialiser les données mises à jour dans le fichier XML
+        _joueurs.SerialiserJoueurs(_cheminXml);
+    }
+
 
     protected override void Update(GameTime tempsDeJeu)
     {
@@ -241,6 +271,8 @@ public class JeuPrincipal : Game
         // Si le jeu est terminé, afficher une option pour recommencer
         if (_jeuTermine)
         {
+            
+            MettreAJourMeilleurScore();
             if (clavier.IsKeyDown(Keys.Space))
             {
                 InitialiserJeu();
@@ -303,7 +335,7 @@ public class JeuPrincipal : Game
         _score = 0;
         _jeuTermine = false;
         _tempsDepuisDernierMouvement = 0f;
-        _delaiMouvement = 0.2f; // Réinitialisation de la vitesse
+        _delaiMouvement = 0.1f; // Réinitialisation de la vitesse
     }
 
     protected override void Draw(GameTime tempsDeJeu)
@@ -329,12 +361,12 @@ public class JeuPrincipal : Game
             // Afficher le message de fin de partie si le jeu est terminé
             if (_jeuTermine)
             {
-                string messageFin = "Jeu terminé ! Appuyez sur ESPACE pour recommencer.";
+                string messageFin = "Jeu termine ! Appuyez sur ESPACE pour recommencer.";
                 var tailleTexte = _police.MeasureString(messageFin);
                 var centreEcran = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
                 _crayon.DrawString(_police, messageFin, centreEcran - tailleTexte / 2, Color.Red);
             }
-        _crayon.End();
+            _crayon.End();
         }
 
 

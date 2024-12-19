@@ -1,42 +1,31 @@
 using System;
 using System.Xml.Serialization;
 
-namespace SnakeWorld;
+namespace SerpentJeu;
 
 [Serializable]
 public class Joueur
 {
-    private uint _id;
-    private String _nom;
-    private uint _meilleurScore;
-    
-    
     [XmlAttribute("id")]
-    public uint Id
-    {
-        set => _id = value;
-        get => _id;
-    }
+    private int Id { get; set; }
+    [XmlElement("Login")]
+    public string Login { get; set; }
 
-    [XmlElement("nom")]
-    public string Nom
-    {
-        set => _nom = value;
-        get => _nom;
-    }
+    [XmlElement("MotDePasse")]
+    public string MotDePasse { get; set; }
 
     [XmlElement("meilleurScore")]
-    public uint MeilleurScore
-    {
-        init => _meilleurScore = 0;
-        get => _meilleurScore;
-    }
+    public int MeilleurScore { get; set; } = 0; // Ajout du champ `meilleurScore` pour correspondre au XML
+    
+    
 
-    public void updateMeilleurScore(uint score)
+  
+
+    public void updateMeilleurScore(int score)
     {
-        if (score > this._meilleurScore)
+        if (score > this.MeilleurScore)
         {
-            this._meilleurScore = score;
+            this.MeilleurScore = score;
         }
     }
 }

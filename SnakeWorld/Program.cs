@@ -9,8 +9,9 @@ namespace SerpentJeu
         [STAThread]
         static void Main()
         {
+            /*
             string pathXml = "xml/joueurs.xml";
-            /*SerialisableJoueurs joueurs = new SerialisableJoueurs();
+             SerialisableJoueurs joueurs = new SerialisableJoueurs();
             Joueur j1 = new Joueur
             {
                 Nom = "Joueur 1", Id = 123
@@ -29,13 +30,13 @@ namespace SerpentJeu
             joueurs.Joueurs.Add(j3);
             
             joueurs.SerialiserJoueurs(pathXml);
-            */
             SerialisableJoueurs joueursDeserialiser = new SerialisableJoueurs();
             joueursDeserialiser.DeserialiserJoueurs(pathXml);
             Console.WriteLine(joueursDeserialiser.ToString());
             joueursDeserialiser.Joueurs[0].updateMeilleurScore(89);
             Console.WriteLine(joueursDeserialiser.ToString());
-            /*try
+            */
+            try
             {
                 //var pageConnexion = new PageConnexion();
                 //pageConnexion.AfficherMenu();
@@ -49,7 +50,7 @@ namespace SerpentJeu
 
             // Garder la fenêtre ouverte
             Console.WriteLine("Appuyez sur une touche pour fermer...");
-            Console.ReadLine();*/
+            Console.ReadLine();
         }
     }
 }

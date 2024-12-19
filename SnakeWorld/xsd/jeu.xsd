@@ -8,6 +8,7 @@
 >
 	<element name="jeu" type="jeu:Jeu"/>
 	<element name="joueurs" type="jeu:Joueurs"/>
+	<element name="Utilisateurs" type="jeu:Utilisateurs"/>
 	
 	<complexType name="Jeu">
 		<sequence>
@@ -38,39 +39,47 @@
 			<element name="y" type="string"/>
 		</sequence>
 	</complexType>
-<<<<<<< HEAD
 
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Joueurs  +++++++++++++++++++++++++++++++ -->
-
-=======
+	
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Joueurs  +++++++++++++++++++++++++++++++ -->
->>>>>>> 03595a98ee8d667994da9998f16c26bd7c820bf5
 	
 	<complexType name="Snake">
 		
 	</complexType>
 	
-<<<<<<< HEAD
-	
 
-=======
->>>>>>> 03595a98ee8d667994da9998f16c26bd7c820bf5
 	<complexType name="Joueurs">
 		<sequence>
 			<element name="joueur" type="jeu:Joueur" maxOccurs="unbounded"/> 
 		</sequence>
 
 	</complexType>
+	<complexType name="Utilisateurs">
+		<sequence>
+			<element name="utilisateur" type="jeu:Utilisateur" maxOccurs="unbounded"/>
+		</sequence>
+	
+	</complexType>
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Joueur  +++++++++++++++++++++++++++++++ -->
 	<complexType name="Joueur">
 		<sequence>
-			<element name="nom" type="string"/>
+			<element name="Login" type="string"/>
+			<element name="MotDePasse" type="string"/>
 			<element name="meilleurScore" type="unsignedInt"/>
 		</sequence>
-		<attribute name="id" type="unsignedInt"/>
+		<attribute name="id" type="int"/>
+	</complexType>
+	
+	<complexType name="Utilisateur">
+		<sequence>
+			<element name="Login" type="string"/>
+			<element name="MotDePasse" type="string"/>
+			<element name="meilleurScore" type="unsignedInt"/>
+		</sequence>
 	</complexType>
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Cadre  (Cadre du Jeu) +++++++++++++++++++++++++++++++ -->

@@ -4,7 +4,7 @@ using System.IO;
 using TextReader = System.IO.TextReader;
 using System.Xml.Serialization;
 
-namespace SnakeWorld;
+namespace SerpentJeu;
 
 [Serializable]
 [XmlRoot("joueurs", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/jeu")]
@@ -18,7 +18,36 @@ public class SerialisableJoueurs
         set => _joueurs = value;
         get => _joueurs;
     }
+    public void AjouterUtilisateur(string filePath,string login, string motDePasse,int MeilleurScore)
+    {
+        
+        // Vérifier si les champs sont valides
+        if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(motDePasse))
+        {
+            Console.WriteLine("Erreur : login ou mot de passe vide.");
+            return;
+        }
+        bool ok=false;
+       
+        // Vérifier si l'utilisateur existe déjà
+        foreach (var joueur in Joueurs)
+        {
+            if (joueur.Login == login && joueur.MotDePasse==motDePasse)
+            {
+                ok=true;
+                Console.WriteLine("Erreur : cet utilisateur existe deja.");
+                return;
+            }
+        }
     
+        // Ajouter le nouvel utilisateur
+        if(!ok){
+            Joueurs.Add(new Joueur { Login = login, MotDePasse = motDePasse,MeilleurScore= MeilleurScore });
+            //AddUtilisateur(filePath);
+            SerialiserJoueurs(filePath);
+            Console.WriteLine($"Utilisateur {login} ajoute avec succès.");
+        }
+    }
     public SerialisableJoueurs()
     {
         Joueurs = new List<Joueur>();
@@ -44,18 +73,30 @@ public class SerialisableJoueurs
     }
     
     
-    public override string ToString()
+    public bool VerifierUtilisateur(string login, string motDePasse)
     {
-        String s = "";
-        s = s + "\t================================\tListe des Joueurs\t================================\n";
-        foreach (Joueur joueur in Joueurs)
+        if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(motDePasse))
         {
-            s = s + "\t   ---> Joueur : " + joueur.Id + "\n";
-            s = s + "\t                 " + joueur.Nom + "\n";
-            s = s + "\t                 " + joueur.MeilleurScore + "\n";
-            s = s + "\t----------------------------------------------------------------------------------\n";
+            return false; // Refuse les champs vides ou contenant uniquement des espaces
         }
-        
-        return s;
+
+        foreach (var Joueur in Joueurs)
+        {
+            if (Joueur.Login == login && Joueur.MotDePasse == motDePasse)
+                return true;
+        }
+        return false;
+    }
+
+    public static ListeUtilisateurs ChargerDepuisXml(string chemin)
+    {
+        if (!File.Exists(chemin))
+            return new ListeUtilisateurs();
+
+        var serializer = new XmlSerializer(typeof(ListeUtilisateurs), "http://www.univ-grenoble-alpes.fr/l3miage/jeu");
+        using (var lecteur = new StreamReader(chemin))
+        {
+            return (ListeUtilisateurs)serializer.Deserialize(lecteur);
+        }
     }
 }

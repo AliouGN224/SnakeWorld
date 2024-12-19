@@ -18,21 +18,33 @@ public class EcranConnexion
     private Rectangle _boutonInscription;
 
     private SpriteFont _police;
-    private ListeUtilisateurs _utilisateurs;
+    //private ListeUtilisateurs _utilisateurs;
+    private SerialisableJoueurs _joueurs;
 
-    private string _cheminXml = /*"xml/Utilisateurs.xml";*/
-        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xml", "Utilisateurs.xml");
+    private string _cheminXml = "xml/joueurs.xml";
+        //Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xml", "Utilisateurs.xml");
 
     private Keys[] _dernieresTouches; // Garde une trace des touches déjà pressées
 
     public bool Connecte { get; private set; } = false;
+
+    public string getLogin()
+    {
+        return _login;
+    }
+    public string getMotDePasse()
+    {
+        return _motDePasse;
+    }
 
     public EcranConnexion(SpriteFont police, GraphicsDevice graphicsDevice)
     {
         _police = police;
         _boutonConnexion = new Rectangle(200, 300, 150, 50);
         _boutonInscription = new Rectangle(400, 300, 150, 50);
-        _utilisateurs = ListeUtilisateurs.ChargerDepuisXml(_cheminXml);
+        //_utilisateurs = ListeUtilisateurs.ChargerDepuisXml(_cheminXml);
+        _joueurs = new SerialisableJoueurs();
+        _joueurs.DeserialiserJoueurs(_cheminXml); 
 
         // Création d'une texture blanche de 1x1 pixel
         _texturePixel = new Texture2D(graphicsDevice, 1, 1);
@@ -43,21 +55,25 @@ public class EcranConnexion
 
     public void MettreAJour(GameTime tempsDeJeu, MouseState souris, KeyboardState clavier, JeuPrincipal jeu)
     {
-        if (souris.LeftButton == ButtonState.Pressed)
+       
+
+        if (_boutonConnexion.Contains(souris.Position))
         {
-            if (_boutonConnexion.Contains(souris.Position))
+            if (_joueurs.VerifierUtilisateur(_login, _motDePasse))
             {
-                if (_utilisateurs.VerifierUtilisateur(_login, _motDePasse))
-                {
-                    Connecte = true;
-                    jeu.DemarrerJeu(); // Lancer le jeu si connexion réussie
-                }
+                Connecte = true;
+                jeu.DemarrerJeu(); // Lancer le jeu si connexion réussie
+                Console.WriteLine("Connexion reussie.");
             }
-            else if (_boutonInscription.Contains(souris.Position))
+            else
             {
-                _utilisateurs.AjouterUtilisateur(_login, _motDePasse);
-                _utilisateurs.SauvegarderEnXml(_cheminXml);
+                Console.WriteLine("Connexion echouee : login ou mot de passe incorrect.");
             }
+        }
+        else if (_boutonInscription.Contains(souris.Position))
+        {
+            _joueurs.AjouterUtilisateur(_cheminXml,_login, _motDePasse,0);
+            //_utilisateurs.SauvegarderEnXml(_cheminXml);
         }
 
         // Gestion de la saisie clavier
