@@ -16,9 +16,9 @@
 			<element name="cadre" type="jeu:Cadre"/>
 			<element name="aliment" type="jeu:Nouriture"/>
 		</sequence>
-	</complexType>
+	</complexType> 
 	
-<!-- Aliment  du serpent ************************ -->
+<!-- Aliment  du serpent ************************* -->
 	
 	<complexType name="Nouriture">
 		<sequence>
@@ -53,6 +53,7 @@
 	</complexType>
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Joueur  +++++++++++++++++++++++++++++++ -->
+	
 	<complexType name="Joueur">
 		<sequence>
 			<element name="nom" type="string"/>
@@ -62,12 +63,14 @@
 	</complexType>
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Cadre  (Cadre du Jeu) +++++++++++++++++++++++++++++++ -->
+	
 	<complexType name="Cadre">
 		<attribute name="largeur" type="double"/>
 		<attribute name="hauteur" type="double"/>
 	</complexType>
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Direction (Où le serpent fait face)  +++++++++++++++++++++++++++++++ -->
+	
 	<simpleType name="Direction">
 		<restriction base="string">
 			<enumeration value="Est"/>

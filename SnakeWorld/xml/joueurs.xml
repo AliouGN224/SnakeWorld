@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<joueurs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.univ-grenoble-alpes.fr/l3miage/jeu">
+<joueurs 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+         xmlns="http://www.univ-grenoble-alpes.fr/l3miage/jeu">
   <joueur id="123">
     <nom>Joueur 1</nom>
-    <meilleurScore>0</meilleurScore>
+    <meilleurScore>6</meilleurScore>
   </joueur>
   <joueur id="456">
     <nom>Joueur 2</nom>
-    <meilleurScore>0</meilleurScore>
+    <meilleurScore>4</meilleurScore>
   </joueur>
   <joueur id="789">
     <nom>Joueur 3</nom>
-    <meilleurScore>0</meilleurScore>
+    <meilleurScore> 9</meilleurScore>
   </joueur>
 </joueurs>
