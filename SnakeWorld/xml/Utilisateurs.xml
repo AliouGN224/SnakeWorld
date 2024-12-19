@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Utilisateurs>
+	<Utilisateur>
+		<Login>Player1</Login>
+		<MotDePasse>1234</MotDePasse>
+	</Utilisateur>
+	<Utilisateur>
+		<Login>Player2</Login>
+		<MotDePasse>abcd</MotDePasse>
+	</Utilisateur>
+</Utilisateurs>
+
+

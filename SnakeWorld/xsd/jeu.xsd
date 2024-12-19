@@ -16,17 +16,17 @@
 			<element name="aliment" type="jeu:Aliment"/>
 		</sequence>
 	</complexType>
-<<<<<<< HEAD
+
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Joueurs  +++++++++++++++++++++++++++++++ -->
-=======
+
 	
 	<complexType name="Snake">
 		
 	</complexType>
 	
 	
->>>>>>> 19a6e2ff28da613fca1976e3fc3cd0d444697701
+
 	<complexType name="Joueurs">
 		<sequence>
 			<element name="joueur" type="jeu:Joueur" maxOccurs="unbounded"/> 
@@ -51,6 +51,15 @@
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Direction (Où le serpent fait face)  +++++++++++++++++++++++++++++++ -->
 	<simpleType name="Direction">
+		<restriction base="string">
+			<enumeration value="Est"/>
+			<enumeration value="Ouest"/>
+			<enumeration value="Nord"/>
+			<enumeration value="Sud"/>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="Aliment">
 		<restriction base="string">
 			<enumeration value="Est"/>
 			<enumeration value="Ouest"/>

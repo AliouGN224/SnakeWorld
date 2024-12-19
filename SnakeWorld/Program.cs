@@ -10,6 +10,8 @@ namespace SerpentJeu
         {
             try
             {
+                //var pageConnexion = new PageConnexion();
+                //pageConnexion.AfficherMenu();
                 using var game = new JeuPrincipal();
                 game.Run();
             }
