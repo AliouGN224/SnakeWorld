@@ -1,0 +1,41 @@
+@startuml
+actor Player as p
+participant "JeuPrincipal" as jp
+participant "Serpent" as s
+participant "Nourriture" as n
+participant "Joueur" as j
+participant "Vector2" as v
+
+p -> jp : Start Game()
+jp -> jp : Initialize()
+jp -> s : Serpent(_tailleCellule)
+jp -> n : Nourriture(_tailleCellule)
+jp -> n : GenererPositionAleatoire(largeurGrille, hauteurGrille)
+
+p -> jp : Update(tempsDeJeu)
+alt Jeu terminé
+    jp -> jp : Vérification état du jeu
+    p -> jp : Restart Game (SPACE Key)
+    jp -> jp : Initialize()
+else Jeu en cours
+    jp -> s : MettreAJour()
+    jp -> s : DetecterCollision()
+    jp -> s : HorsLimites(largeur, hauteur)
+
+    alt Collision détectée avec Nourriture
+        jp -> s : Agrandir()
+        jp -> n : GenererPositionAleatoire(largeurGrille, hauteurGrille)
+        jp -> j : updateMeilleurScore(_score)
+    end
+end
+
+p -> jp : Draw(tempsDeJeu)
+jp -> s : Dessiner(_crayon)
+jp -> n : Dessiner(_crayon)
+
+alt Game Over
+    jp -> jp : SauvegarderEtatJeu()
+end
+
+p -> jp : End Game()
+@enduml

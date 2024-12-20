@@ -11,74 +11,59 @@
 	
 	<complexType name="Jeu">
 		<sequence>
-			<element name="snake" type="jeu:Snake"/>
-			<element name="joueur" type="jeu:Joueur"/>
-			<element name="cadre" type="jeu:Cadre"/>
-			<element name="aliment" type="jeu:Nouriture"/>
+			<element name="serpent" type="jeu:Serpent"/>
+			<element name="joueurs" type="jeu:Joueurs"/>
+			<element name="nourriture" type="jeu:Nourriture"/>
 		</sequence>
 	</complexType> 
 	
-<!-- Aliment  du serpent ************************* -->
+	<!-- Nourriture  du serpent ************************* -->
 	
-	<complexType name="Nouriture">
+	<complexType name="Nourriture">
 		<sequence>
-			<element name="type" type="jeu:Type"/>
 			<element name="position" type="jeu:Vecteur2D"/>
+			<element name="taille" type="int"/>
 		</sequence>
 	</complexType>
-	<simpleType name="Type">
-		<restriction base="string">
-			<enumeration value="Lapin"/>
-			<enumeration value="Pomme"/>
-		</restriction>
-	</simpleType>
+	
+	<!-- +++++++++++++++++++++++++++++++ TYPE Vecteur2D  +++++++++++++++++++++++++++++++ -->
+	
 	<complexType name="Vecteur2D">
 		<sequence>
 			<element name="x" type="string"/>
 			<element name="y" type="string"/>
 		</sequence>
+	</complexType>	
+
+	<!-- +++++++++++++++++++++++++++++++ TYPE Serpent  +++++++++++++++++++++++++++++++ -->
+	
+	<complexType name="Serpent">
+		<sequence>
+			<element name="corps" type="jeu:Corps"/>
+			<element name="direction" type="jeu:Vecteur2D"/>
+			<element name="taille" type="int"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="Corps">
+		<sequence>
+			<element name="morceauCorps" type="jeu:Vecteur2D" maxOccurs="unbounded"/>
+		</sequence>
 	</complexType>
 
 	<!-- +++++++++++++++++++++++++++++++ TYPE Joueurs  +++++++++++++++++++++++++++++++ -->
-	
-	<complexType name="Snake">
-		
-	</complexType>
 	
 	<complexType name="Joueurs">
 		<sequence>
 			<element name="joueur" type="jeu:Joueur" maxOccurs="unbounded"/> 
 		</sequence>
-
 	</complexType>
 
-	<!-- +++++++++++++++++++++++++++++++ TYPE Joueur  +++++++++++++++++++++++++++++++ -->
-	
 	<complexType name="Joueur">
 		<sequence>
-			<element name="nom" type="string"/>
+			<element name="login" type="string"/>
+			<element name="motDePasse" type="string"/>
 			<element name="meilleurScore" type="unsignedInt"/>
 		</sequence>
-		<attribute name="id" type="unsignedInt"/>
 	</complexType>
-
-	<!-- +++++++++++++++++++++++++++++++ TYPE Cadre  (Cadre du Jeu) +++++++++++++++++++++++++++++++ -->
-	
-	<complexType name="Cadre">
-		<attribute name="largeur" type="double"/>
-		<attribute name="hauteur" type="double"/>
-	</complexType>
-
-	<!-- +++++++++++++++++++++++++++++++ TYPE Direction (Où le serpent fait face)  +++++++++++++++++++++++++++++++ -->
-	
-	<simpleType name="Direction">
-		<restriction base="string">
-			<enumeration value="Est"/>
-			<enumeration value="Ouest"/>
-			<enumeration value="Nord"/>
-			<enumeration value="Sud"/>
-		</restriction>
-	</simpleType>
-
-
 </schema>

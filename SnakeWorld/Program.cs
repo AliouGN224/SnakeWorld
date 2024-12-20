@@ -28,6 +28,7 @@ namespace SerpentJeu
             joueurs.Joueurs.Add(j2);
             joueurs.Joueurs.Add(j3);
             
+<<<<<<< HEAD
             joueurs.SerialiserJoueurs(pathXml);*/
             /*SerialisableJoueurs joueursDeserialiser = new SerialisableJoueurs();
             joueursDeserialiser.DeserialiserJoueurs(pathXml);
@@ -36,6 +37,10 @@ namespace SerpentJeu
             Console.WriteLine(joueursDeserialiser.ToString());*/
             
             /*SerialisableJoueurs joueursDeserialiser = new SerialisableJoueurs();
+=======
+            joueurs.SerialiserJoueurs(pathXml);
+            SerialisableJoueurs joueursDeserialiser = new SerialisableJoueurs();
+>>>>>>> 2679330e8adc9d974a447739d76a8757263d5863
             joueursDeserialiser.DeserialiserJoueurs(pathXml);
             Console.WriteLine(joueursDeserialiser.ToString());
             joueursDeserialiser.Joueurs[0].updateMeilleurScore(89);

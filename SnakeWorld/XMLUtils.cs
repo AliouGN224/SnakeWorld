@@ -5,7 +5,7 @@ using System.Xml.Schema;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 
-namespace SnakeWorld;
+namespace SerpentJeu;
 public class XMLUtils
 {
     public XMLUtils(){ }
@@ -26,14 +26,10 @@ public class XMLUtils
         xslt.Transform(xpathDoc, argList, htmlWriter);
     }*/
     
-    public static void XslTransform(string xmlFilePath, string xsltFilePath, string htmlFilePath, string idInfirmiere) {
+    /*public static void XslTransform(string xmlFilePath, string xsltFilePath, string htmlFilePath) {
         XPathDocument xpathDoc = new XPathDocument(xmlFilePath);
         XslCompiledTransform xslt = new XslCompiledTransform();
     
-        XsltArgumentList argList = new XsltArgumentList();
-        argList.AddParam("idInfirmiere", "", idInfirmiere);
-        
-        // Activer la fonction document() via XsltSettings
         var settings = new XsltSettings(enableDocumentFunction: true, enableScript: false);
         var resolver = new XmlUrlResolver
         {
@@ -46,7 +42,7 @@ public class XMLUtils
         {
             using (XmlWriter htmlWriter = XmlWriter.Create(htmlFilePath))
             {
-                xslt.Transform(xpathDoc, argList, htmlWriter, resolver);
+                xslt.Transform(xpathDoc, null, htmlWriter, resolver);
             }
             Console.WriteLine("Chemin absolu du fichier de sortie : " + Path.GetFullPath(htmlFilePath));
         }
@@ -54,7 +50,25 @@ public class XMLUtils
         {
             Console.WriteLine("Erreur lors de l'écriture du fichier : " + ex.Message);
         }
+    }*/
+    
+    public static void XslTransform ( string xmlFilePath , string xsltFilePath , string htmlFilePath ) {
+        try
+        {
+            XPathDocument xpathDoc = new XPathDocument ( xmlFilePath ) ;
+            XslCompiledTransform xslt = new XslCompiledTransform () ;
+            xslt . Load ( xsltFilePath ) ;
+            XmlTextWriter htmlWriter = new XmlTextWriter ( htmlFilePath , null ) ;
+            xslt . Transform ( xpathDoc , null , htmlWriter ) ;
+            Console.WriteLine("Chemin absolu du fichier de sortie : " + Path.GetFullPath(htmlFilePath));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Erreur lors de l'écriture du fichier : " + ex.Message);
+        }
+        
     }
+
 
 
 }

@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <joueurs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.univ-grenoble-alpes.fr/l3miage/jeu">
-  <joueur id="123">
-    <nom>Joueur 1</nom>
-    <meilleurScore>0</meilleurScore>
+  <joueur>
+    <login>gueye</login>
+    <motDePasse>9876</motDePasse>
+    <meilleurScore>360</meilleurScore>
   </joueur>
-  <joueur id="456">
-    <nom>Joueur 2</nom>
-    <meilleurScore>0</meilleurScore>
+  <joueur>
+    <login>sadou</login>
+    <motDePasse>4567</motDePasse>
+    <meilleurScore>100</meilleurScore>
   </joueur>
-  <joueur id="789">
-    <nom>Joueur 3</nom>
+  <joueur>
+    <login>daill</login>
+    <motDePasse>1234</motDePasse>
+    <meilleurScore>100</meilleurScore>
+  </joueur>
+  <joueur>
+    <login>gueye</login>
+    <motDePasse>7913</motDePasse>
     <meilleurScore>0</meilleurScore>
   </joueur>
 </joueurs>

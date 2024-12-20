@@ -1,23 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using TextReader = System.IO.TextReader;
 using System.Xml.Serialization;
 
-namespace SerpentJeu;
 
 [Serializable]
-[XmlRoot("joueurs", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/jeu")]
-public class SerialisableJoueurs
+public class Utilisateur
 {
-    private List<Joueur> _joueurs;
-    
-    [XmlElement("joueur")]
-    public List<Joueur> Joueurs
-    {
-        set => _joueurs = value;
-        get => _joueurs;
-    }
+    [XmlElement("Login")]
+    public string Login { get; set; }
+
+    [XmlElement("MotDePasse")]
+    public string MotDePasse { get; set; }
+
+    [XmlElement("meilleurScore")]
+    public int MeilleurScore { get; set; } = 0; // Ajout du champ `meilleurScore` pour correspondre au XML
+}
+
+
+[Serializable]
+[XmlRoot("Utilisateurs", Namespace = "http://www.univ-grenoble-alpes.fr/l3miage/jeu")]
+public class ListeUtilisateurs
+{
+    [XmlElement("utilisateur")] // Utilisez "utilisateur" pour correspondre à la balise XML
+    public List<Utilisateur> Utilisateurs { get; set; } = new List<Utilisateur>();
+
     public void AjouterUtilisateur(string filePath,string login, string motDePasse,int MeilleurScore)
     {
         
@@ -27,52 +34,45 @@ public class SerialisableJoueurs
             Console.WriteLine("Erreur : login ou mot de passe vide.");
             return;
         }
+
         bool ok=false;
-       
         // Vérifier si l'utilisateur existe déjà
-        foreach (var joueur in Joueurs)
+        foreach (var utilisateur in Utilisateurs)
         {
-            if (joueur.Login == login && joueur.MotDePasse==motDePasse)
+            if (utilisateur.Login == login)
             {
                 ok=true;
                 Console.WriteLine("Erreur : cet utilisateur existe deja.");
                 return;
             }
         }
-    
+
         // Ajouter le nouvel utilisateur
         if(!ok){
-            Joueurs.Add(new Joueur { Login = login, MotDePasse = motDePasse,MeilleurScore= MeilleurScore });
+            Utilisateurs.Add(new Utilisateur { Login = login, MotDePasse = motDePasse,MeilleurScore= MeilleurScore });
             //AddUtilisateur(filePath);
             SerialiserJoueurs(filePath);
             Console.WriteLine($"Utilisateur {login} ajoute avec succès.");
         }
     }
-    public SerialisableJoueurs()
-    {
-        Joueurs = new List<Joueur>();
-    }
+
     
-    public void DeserialiserJoueurs(String path)
-    {
-        using (TextReader reader = new StreamReader(path))
-        {
-            var xmlJoueurs = new XmlSerializer(typeof(SerialisableJoueurs));
-            var deserialized = (SerialisableJoueurs)xmlJoueurs.Deserialize(reader);
-            this.Joueurs =  deserialized.Joueurs;
-        }
-    }
     
-    public void SerialiserJoueurs(String path)
+    public void SerialiserJoueurs(String filePath)
     {
-        using (var writer = new StreamWriter(path))
+        using (var writer = new StreamWriter(filePath))
         {
-            var xmlJoueurs = new XmlSerializer(typeof(SerialisableJoueurs));
+            var xmlJoueurs = new XmlSerializer(typeof(ListeUtilisateurs));
             xmlJoueurs.Serialize(writer, this);
         }
     }
-    
-    
+
+    public static Utilisateur DeserializeFromFile(string filePath)
+    {
+        XmlSerializer serializer = new(typeof(Utilisateur));
+        using StreamReader reader = new(filePath);
+        return (Utilisateur)serializer.Deserialize(reader);
+    }
     public bool VerifierUtilisateur(string login, string motDePasse)
     {
         if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(motDePasse))
@@ -80,9 +80,9 @@ public class SerialisableJoueurs
             return false; // Refuse les champs vides ou contenant uniquement des espaces
         }
 
-        foreach (var Joueur in Joueurs)
+        foreach (var utilisateur in Utilisateurs)
         {
-            if (Joueur.Login == login && Joueur.MotDePasse == motDePasse)
+            if (utilisateur.Login == login && utilisateur.MotDePasse == motDePasse)
                 return true;
         }
         return false;
@@ -99,4 +99,6 @@ public class SerialisableJoueurs
             return (ListeUtilisateurs)serializer.Deserialize(lecteur);
         }
     }
+
+
 }

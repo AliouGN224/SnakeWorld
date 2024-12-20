@@ -39,7 +39,7 @@
     <xsl:template match="jeu:joueur">
         <tr>
             <td>
-                <xsl:value-of select="jeu:nom"/>
+                <xsl:value-of select="jeu:Login"/>
             </td>
             <td>
                 <xsl:value-of select="jeu:meilleurScore"/>

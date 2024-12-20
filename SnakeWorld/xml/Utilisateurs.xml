@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Utilisateurs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.univ-grenoble-alpes.fr/l3miage/jeu">
+  <utilisateur>
+    <Login>Player1</Login>
+    <MotDePasse>1234</MotDePasse>
+    <meilleurScore>0</meilleurScore>
+  </utilisateur>
+  <utilisateur>
+    <Login>Player2</Login>
+    <MotDePasse>abcd</MotDePasse>
+    <meilleurScore>0</meilleurScore>
+  </utilisateur>
+  <utilisateur>
+    <Login>gueye</Login>
+    <MotDePasse>1234</MotDePasse>
+    <meilleurScore>0</meilleurScore>
+  </utilisateur>
+  <utilisateur>
+    <Login>sadou</Login>
+    <MotDePasse>12345</MotDePasse>
+    <meilleurScore>0</meilleurScore>
+  </utilisateur>
+</Utilisateurs>

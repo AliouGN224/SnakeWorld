@@ -1,0 +1,83 @@
+@startuml
+class JeuPrincipal {
+    - Serpent _serpent
+    - Nourriture _nourriture
+    - int _score
+    - bool _jeuTermine
+    - float _delaiMouvement
+    - float _tempsDepuisDernierMouvement
+    --- 
+    + Initialize()
+    + Update(GameTime tempsDeJeu)
+    + Draw(GameTime tempsDeJeu)
+    + SauvegarderEtatJeu()
+}
+
+class Joueur {
+    - uint _id
+    - String _nom
+    - uint _meilleurScore
+    ---
+    + uint Id
+    + string Nom
+    + uint MeilleurScore
+    + void updateMeilleurScore(uint score)
+}
+
+class Serpent {
+    - List<Vector2> _corps
+    - Vector2 _direction
+    - int _tailleCellule
+    - Texture2D _texture
+    ---
+    + Serpent(int tailleCellule)
+    + void ChargerContenu(GraphicsDevice appareilGraphique)
+    + void MettreAJour()
+    + void Dessiner(SpriteBatch crayon)
+    + void Agrandir()
+    + void ChangerDirection(Vector2 nouvelleDirection)
+    + Vector2 PositionTete
+    + bool DetecterCollision()
+    + bool HorsLimites(int largeur, int hauteur)
+}
+
+class Nourriture {
+    - Vector2 _position
+    - int _tailleCellule
+    - Texture2D _texture
+    ---
+    + Nourriture(int tailleCellule)
+    + void ChargerContenu(GraphicsDevice appareilGraphique)
+    + void GenererPositionAleatoire(int largeurGrille, int hauteurGrille)
+    + void Dessiner(SpriteBatch crayon)
+    + Vector2 RecupererPosition()
+}
+
+class EcranConnexion {
+    - string _login
+    - string _motDePasse
+    - bool _afficherMotDePasse
+    - bool _saisieLogin
+    - Rectangle _boutonConnexion
+    - private Rectangle _boutonInscription
+    ---
+    + string getLogin()
+    + string getMotDePasse()
+    + EcranConnexion(SpriteFont police, GraphicsDevice graphicsDevice)
+    + void MettreAJour(GameTime tempsDeJeu, MouseState souris, KeyboardState clavier, JeuPrincipal jeu)
+    + string ToucheVersCaractere(Keys touche, KeyboardState clavier)
+    + string ObtenirCaractereSpecial(string chiffre)
+    + void Dessiner(SpriteBatch crayon)
+    + void DrawRectangle(SpriteBatch spriteBatch, Rectangle rectangle, Color couleur)
+}
+
+' Relations avec cardinalités et descriptions en français
+JeuPrincipal "1" --> "1" EcranConnexion : Affiche
+JeuPrincipal "1" --> "1" Serpent : Contrôle
+JeuPrincipal "1" --> "1" Nourriture : Contrôle
+JeuPrincipal "1" --> "0..*" Joueur : Gère les scores
+Serpent "1" o-- "1..*" Vector2 : Segments du corps
+Nourriture "1" --> "1" Vector2 : Position
+Joueur "0..*" --> "1" JeuPrincipal : Suivi
+
+@enduml

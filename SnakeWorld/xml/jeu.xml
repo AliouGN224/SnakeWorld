@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jeu xmlns="http://www.univ-grenoble-alpes.fr/l3miage/jeu"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/jeu ../xsd/jeu.xsd">
+    <serpent>
+        <corps>
+            <morceauCorps>
+                <x>5</x>
+                <y>10</y>
+            </morceauCorps>
+            <morceauCorps>
+                <x>5</x>
+                <y>10</y>
+            </morceauCorps>
+        </corps>
+        <direction>
+            <x>1</x>
+            <y>0</y>
+        </direction>
+        <taille>3</taille>
+    </serpent>
+    <joueurs>
+        <joueur>
+            <login>player1</login>
+            <motDePasse>1234</motDePasse>
+            <meilleurScore>100</meilleurScore>
+        </joueur>
+        <joueur>
+            <login>player2</login>
+            <motDePasse>456</motDePasse>
+            <meilleurScore>200</meilleurScore>
+        </joueur>
+    </joueurs>
+    <nourriture>
+        <position>
+            <x>15</x>
+            <y>20</y>
+        </position>
+        <taille>1</taille>
+    </nourriture>
+</jeu>
