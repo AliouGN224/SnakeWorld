@@ -21,7 +21,7 @@
                             Si tu es le numero 1, assure toi d'être à l'abri en montant ton score, aller c'est parti !!
                         </p>
                         <table class ="tab">
-                            <tr><th>Nom du Joueur</th> <th> Meilleur Score réalisé</th> </tr>
+                            <tr><th>Rang</th><th>Nom du Joueur</th> <th> Meilleur Score réalisé</th> </tr>
                             <xsl:apply-templates select="jeu:joueurs/jeu:joueur">
                                 <xsl:sort select="jeu:meilleurScore" order="descending" data-type="number"/>
                             </xsl:apply-templates>
@@ -39,7 +39,10 @@
     <xsl:template match="jeu:joueur">
         <tr>
             <td>
-                <xsl:value-of select="jeu:Login"/>
+              <xsl:value-of select="position()"/>  
+            </td>
+            <td>
+                <xsl:value-of select="jeu:login"/>
             </td>
             <td>
                 <xsl:value-of select="jeu:meilleurScore"/>

@@ -6,13 +6,13 @@
     <meilleurScore>120</meilleurScore>
   </joueur>
   <joueur>
-    <Login>sadou</Login>
-    <MotDePasse>4567</MotDePasse>
-    <meilleurScore>100</meilleurScore>
-  </joueur>
-  <joueur>
     <Login>daill</Login>
     <MotDePasse>1234</MotDePasse>
     <meilleurScore>100</meilleurScore>
+  </joueur>
+  <joueur>
+    <Login>sadou</Login>
+    <MotDePasse>4567</MotDePasse>
+    <meilleurScore>120</meilleurScore>
   </joueur>
 </joueurs>
