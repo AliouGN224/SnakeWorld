@@ -1,1 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<joueurs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.univ-grenoble-alpes.fr/l3miage/jeu">
+  <joueur>
+    <meilleurScore>360</meilleurScore>
+  </joueur>
+  <joueur>
+    <meilleurScore>100</meilleurScore>
+  </joueur>
+  <joueur>
+    <meilleurScore>100</meilleurScore>
+  </joueur>
+  <joueur>
+    <Login>elaouadz</Login>
+    <MotDePasse>zineb</MotDePasse>
+    <meilleurScore>290</meilleurScore>
+  </joueur>
+</joueurs>

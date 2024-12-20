@@ -8,10 +8,10 @@ public class Joueur
 {
     [XmlAttribute("id")]
     private int Id { get; set; }
-    [XmlElement("Login")]
+    [XmlElement("login")]
     public string Login { get; set; }
 
-    [XmlElement("MotDePasse")]
+    [XmlElement("motDePasse")]
     public string MotDePasse { get; set; }
 
     [XmlElement("meilleurScore")]
