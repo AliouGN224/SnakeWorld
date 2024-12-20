@@ -253,6 +253,7 @@ public class JeuPrincipal : Game
 
         // Sérialiser les données mises à jour dans le fichier XML
         _joueurs.SerialiserJoueurs(_cheminXml);
+        XMLUtils.XslTransform("xml/joueurs.xml","xslt/joueurs.xslt","html/Joueur.html");
     }
 
 
@@ -273,6 +274,7 @@ public class JeuPrincipal : Game
         {
             
             MettreAJourMeilleurScore();
+            
             if (clavier.IsKeyDown(Keys.Space))
             {
                 InitialiserJeu();
@@ -335,7 +337,7 @@ public class JeuPrincipal : Game
         _score = 0;
         _jeuTermine = false;
         _tempsDepuisDernierMouvement = 0f;
-        _delaiMouvement = 0.1f; // Réinitialisation de la vitesse
+        _delaiMouvement = 0.15f; // Réinitialisation de la vitesse
     }
 
     protected override void Draw(GameTime tempsDeJeu)

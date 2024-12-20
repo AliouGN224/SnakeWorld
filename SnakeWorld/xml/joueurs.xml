@@ -3,11 +3,16 @@
   <joueur>
     <Login>gueye</Login>
     <MotDePasse>9876</MotDePasse>
-    <meilleurScore>180</meilleurScore>
+    <meilleurScore>120</meilleurScore>
   </joueur>
   <joueur>
     <Login>sadou</Login>
     <MotDePasse>4567</MotDePasse>
+    <meilleurScore>100</meilleurScore>
+  </joueur>
+  <joueur>
+    <Login>daill</Login>
+    <MotDePasse>1234</MotDePasse>
     <meilleurScore>100</meilleurScore>
   </joueur>
 </joueurs>

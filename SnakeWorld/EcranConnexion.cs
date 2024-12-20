@@ -164,10 +164,10 @@ public class EcranConnexion
 
         // Dessiner les boutons
         DrawRectangle(crayon, _boutonConnexion, Color.Green);
-        crayon.DrawString(_police, "Se connecter", new Vector2(210, 310), Color.Black);
+        crayon.DrawString(_police, "Se connecter", new Vector2(210, 310), Color.White);
 
         DrawRectangle(crayon, _boutonInscription, Color.Blue);
-        crayon.DrawString(_police, "S'inscrire", new Vector2(410, 310), Color.Black);
+        crayon.DrawString(_police, "S'inscrire", new Vector2(410, 310), Color.White);
 
         crayon.End(); // Fin du dessin
     }

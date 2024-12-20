@@ -9,9 +9,8 @@ namespace SerpentJeu
         [STAThread]
         static void Main()
         {
-            /*
             string pathXml = "xml/joueurs.xml";
-             SerialisableJoueurs joueurs = new SerialisableJoueurs();
+            /*SerialisableJoueurs joueurs = new SerialisableJoueurs();
             Joueur j1 = new Joueur
             {
                 Nom = "Joueur 1", Id = 123
@@ -38,8 +37,6 @@ namespace SerpentJeu
             */
             try
             {
-                //var pageConnexion = new PageConnexion();
-                //pageConnexion.AfficherMenu();
                 using var game = new JeuPrincipal();
                 game.Run();
             }
