@@ -10,7 +10,7 @@ namespace SerpentJeu
         static void Main()
         {
             /*string pathXml = "xml/joueurs.xml";
-            /*SerialisableJoueurs joueurs = new SerialisableJoueurs();
+            SerialisableJoueurs joueurs = new SerialisableJoueurs();
             Joueur j1 = new Joueur
             {
                 Nom = "Joueur 1", Id = 123
@@ -28,13 +28,19 @@ namespace SerpentJeu
             joueurs.Joueurs.Add(j2);
             joueurs.Joueurs.Add(j3);
             
-            joueurs.SerialiserJoueurs(pathXml);
-            */
+            joueurs.SerialiserJoueurs(pathXml);*/
             /*SerialisableJoueurs joueursDeserialiser = new SerialisableJoueurs();
             joueursDeserialiser.DeserialiserJoueurs(pathXml);
             Console.WriteLine(joueursDeserialiser.ToString());
             joueursDeserialiser.Joueurs[0].updateMeilleurScore(89);
             Console.WriteLine(joueursDeserialiser.ToString());*/
+            
+            /*SerialisableJoueurs joueursDeserialiser = new SerialisableJoueurs();
+            joueursDeserialiser.DeserialiserJoueurs(pathXml);
+            Console.WriteLine(joueursDeserialiser.ToString());
+            joueursDeserialiser.Joueurs[0].updateMeilleurScore(89);
+            Console.WriteLine(joueursDeserialiser.ToString());
+    */
             try
             {
                 using var game = new JeuPrincipal();

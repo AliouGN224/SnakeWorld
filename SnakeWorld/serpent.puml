@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor Joueur as Player
+participant Jeu as Game
+participant Serpent as Snake
+participant "Moteur de Rendu" as Renderer
+
+Player -> Game: démarrerPartie()
+activate Game
+Game -> Snake: initialiser()
+activate Snake
+Snake --> Game: serpent initialisé
+deactivate Snake
+Game -> Renderer: initialiserAffichage()
+activate Renderer
+Renderer --> Game: affichage prêt
+deactivate Renderer
+
+loop pendant que la partie est en cours
+    Player -> Game: saisirCommande(direction)
+    Game -> Snake: mettreAJourPosition(direction)
+    activate Snake
+    Snake -> Snake: déplacer()
+    Snake -> Game: vérifierCollision()
+    alt collision détectée
+        Snake --> Game: collision détectée
+        Game -> Player: afficher "Game Over"
+        break
+    else pas de collision
+        Snake --> Game: mouvement validé
+    end
+    deactivate Snake
+
+    Game -> Renderer: mettreAJourAffichage()
+    activate Renderer
+    Renderer --> Game: affichage mis à jour
+    deactivate Renderer
+end
+
+Game --> Player: afficher "Partie terminée"
+deactivate Game
+
+
+
+
+
+
+
+
+@enduml
