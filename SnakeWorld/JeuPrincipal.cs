@@ -253,7 +253,7 @@ public class JeuPrincipal : Game
 
         // Sérialiser les données mises à jour dans le fichier XML
         _joueurs.SerialiserJoueurs(_cheminXml);
-        XMLUtils.XslTransform("xml/joueurs.xml","xslt/joueurs.xslt","html/Joueur.html");
+        XMLUtils.XslTransform("xml/joueurs.xml","xslt/joueurs.xslt","html/joueurs.html");
     }
 
 
